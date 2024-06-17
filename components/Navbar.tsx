@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
   return (
-    <div className="fixed w-full bg-white z-50">
+    <div className="fixed w-full bg-white z-50 shadow-xl">
       <div className="flex items-center max-w-6xl justify-between h-14 mx-auto px-3">
         {/* search bar */}
         <div className="flex items-center gap-2">
