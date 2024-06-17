@@ -12,7 +12,7 @@ export default async function Home() {
       {/* sidebar */}
       <Sidebar user={user}/>
       {/* news feed */}
-     <Feed />
+     <Feed  user={user}/>
       {/* News */}
       <News />
 
