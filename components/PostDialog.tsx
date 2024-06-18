@@ -49,6 +49,8 @@ export function PostDialog({
     } catch (error) {
       console.log("error has occurred", error);
     }
+    setInputText("");
+    setOpen(false)
   }
 
   return (
