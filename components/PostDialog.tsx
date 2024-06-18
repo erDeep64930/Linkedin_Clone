@@ -14,6 +14,7 @@ import ProfilePhoto from "./shared/ProfilePhoto";
 
 import { useRef, useState } from "react";
 import { ImageIcon } from "lucide-react";
+import { createPostAction } from "@/lib/serveraction";
 
 export function PostDialog({
   setOpen,
@@ -24,7 +25,12 @@ export function PostDialog({
   open: boolean;
   src: string;
 }) {
+  const [inputText, setInputText] = useState<string>("");
   const [selectedFile, setSelectedFile] = useState<string>("");
+  const changeHandler =(e:any)=>{
+    setInputText(e.target.value)
+
+  }
   const fileChangeHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -34,6 +40,16 @@ export function PostDialog({
   };
 
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const postActionHandler = async(formData:FormData)=>{
+    const inputText = formData.get('inputText') as string;
+    console.log(inputText);
+    try {
+      await createPostAction(inputText,selectedFile)
+    } catch (error) {
+      console.log("error has occurred", error);
+    }
+  }
 
   return (
     <Dialog open={open}>
@@ -53,13 +69,15 @@ export function PostDialog({
             </div>
           </DialogTitle>
         </DialogHeader>
-        <form>
+        <form action={postActionHandler}>
           <div className="flex flex-col">
             <Textarea
               placeholder="Type your message here."
               id="inputText"
               name="inputText"
               className="border-none text-lg focus-visible:ring-0"
+              onChange={changeHandler}
+              value={inputText}
             />
             <div className="my-4">
               {selectedFile && (
