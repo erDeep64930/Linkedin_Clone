@@ -7,7 +7,7 @@ import { Button } from './ui/button'
 import { createCommentAction } from '@/lib/serveraction'
 
 
-const CommentInput = ({ postId }: { postId: string }) => {
+const CommentInput = ({ postId }: { postId: any }) => {
     const { user } = useUser();
     const commentActionHandler = async (formData:FormData) => {
         try {
