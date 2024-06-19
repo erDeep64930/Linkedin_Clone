@@ -9,6 +9,7 @@ import { IPostDocument } from '@/models/post.model'
 import PostContent from './PostContent'
 import SocialOptions from './SocialOptions'
 import ReactTimeago from "react-timeago";
+import { deletePostAction } from '@/lib/serveraction'
 
 
 const Post = ({ post }: { post: IPostDocument }) => {
@@ -30,7 +31,7 @@ const Post = ({ post }: { post: IPostDocument }) => {
                         </p>
                     </div>
                 </div>
-                {/* <div>
+                <div>
                     {
                         loggedInUser && (
                             <Button onClick={() => {
@@ -40,7 +41,7 @@ const Post = ({ post }: { post: IPostDocument }) => {
                             </Button>
                         )
                     }
-                </div> */}
+                </div>
             </div>
             <PostContent post={post} />
             <SocialOptions />
